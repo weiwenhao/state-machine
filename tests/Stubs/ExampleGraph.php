@@ -16,7 +16,7 @@ class ExampleGraph extends Graph
 
     protected $initState = 'new';
 
-    protected $transitions = [
+    protected $graph = [
         'cancel' => [
             'from' => ['new'],
             'to' => 'cancelled',

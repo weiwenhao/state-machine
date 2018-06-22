@@ -20,13 +20,13 @@ trait StateMachineHelper
      * @return bool
      * @throws StateMachineException
      */
-    public function can(string $transition)
+    public function can($transition)
     {
-        if (!isset($this->transitions[$transition])) {
+        if (!isset($this->graph[$transition])) {
             throw new StateMachineException("Transition {$transition} dose not exist");
         }
 
-        if (!in_array($this->getState(), $this->transitions[$transition]['from'])) {
+        if (!in_array($this->getState(), $this->graph[$transition]['from'])) {
             return false;
         }
 
@@ -39,7 +39,7 @@ trait StateMachineHelper
      * @return bool
      * @throws StateMachineException
      */
-    public function apply(string $transition, bool $soft = false): bool
+    public function apply($transition, $soft = false)
     {
         if (!$this->can($transition)) {
             if ($soft) {
@@ -49,7 +49,7 @@ trait StateMachineHelper
             throw new StateMachineException("Transition {$transition} cannot be applied");
         }
 
-        $this->setState($this->transitions[$transition]['to']);
+        $this->setState($this->graph[$transition]['to']);
 
         // 后置回调
         $functionName = camel_case('on_' . $transition);
@@ -85,7 +85,7 @@ trait StateMachineHelper
      */
     public function getPossibleTransitions()
     {
-        return array_filter(array_keys($this->transitions), [$this, 'can']);
+        return array_filter(array_keys($this->graph), [$this, 'can']);
     }
 
     /**
@@ -94,7 +94,7 @@ trait StateMachineHelper
      * @param string $state
      * @throws StateMachineException
      */
-    protected function setState(string $state)
+    protected function setState($state)
     {
         if (!in_array($state, $this->states)) {
             throw new StateMachineException("Cannot set the state to {$state},because it is not defined in the \$this->states.");

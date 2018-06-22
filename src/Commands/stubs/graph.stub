@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use Weiwenhao\StateMachine\Graph;
+
+class DummyClass extends Graph
+{
+    protected $initState;
+
+    protected $key = 'state';
+
+    protected $states = [];
+
+    protected $transitions = [];
+}

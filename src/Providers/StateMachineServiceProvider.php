@@ -5,7 +5,7 @@ namespace Weiwenhao\StateMachine\Providers;
 use Weiwenhao\StateMachine\Commands\GraphMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class StateMachineServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.

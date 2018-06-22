@@ -16,7 +16,7 @@ class DummyClass extends Graph
 
     protected $initState = 'cart';
 
-    protected $transitions = [
+    protected $graph = [
         'create' => [
             'from' => ['cart'],
             'to' => 'new',

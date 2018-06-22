@@ -3,9 +3,6 @@
 namespace Weiwenhao\StateMachine\Tests;
 
 use Illuminate\Database\Eloquent\Model;
-use \Mockery;
-use Weiwenhao\StateMachine\Graph;
-use Weiwenhao\StateMachine\StateMachineException;
 use Weiwenhao\StateMachine\Tests\Stubs\ExampleGraph;
 
 class GraphTest extends TestCase
@@ -14,8 +11,8 @@ class GraphTest extends TestCase
     protected $graph;
 
     /**
-     * @throws StateMachineException
      * @throws \ReflectionException
+     * @throws \Weiwenhao\StateMachine\StateMachineException
      */
     public function setUp()
     {
@@ -29,7 +26,7 @@ class GraphTest extends TestCase
 
 
     /**
-     * @throws StateMachineException
+     * @throws \Weiwenhao\StateMachine\StateMachineException
      */
     public function testConstruct()
     {
@@ -68,6 +65,15 @@ class GraphTest extends TestCase
      * @depends testInit
      * @param $graph
      */
+    public function testGetPossibleTransitions($graph)
+    {
+        $this->assertEquals(['cancel', 'fulfill'], $graph->getPossibleTransitions());
+    }
+
+    /**
+     * @depends testInit
+     * @param $graph
+     */
     public function testApply($graph)
     {
         $this->assertTrue($graph->apply('fulfill'));
@@ -75,17 +81,22 @@ class GraphTest extends TestCase
     }
 
     /**
-     * @throws StateMachineException
+     * @expectedException \Weiwenhao\StateMachine\StateMachineException
+     */
+    public function testException()
+    {
+        $graph = ExampleGraph::with($this->model);
+        $graph->apply('fulfill');
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage cancelled
      */
     public function testEvent()
     {
         $graph = ExampleGraph::with($this->model);
         $graph->init();
-
-        try {
-            $graph->apply('cancel');
-        } catch (\Exception $exception) {
-            $this->assertEquals('cancelled', $exception->getMessage());
-        }
+        $graph->apply('cancel');
     }
 }

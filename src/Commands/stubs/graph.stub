@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use StateMachine\Graph;
+use Weiwenhao\StateMachine\Graph;
 
 class DummyClass extends Graph
 {

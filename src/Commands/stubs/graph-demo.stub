@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use Illuminate\Database\Eloquent\Model;
-use StateMachine\Graph;
+use Weiwenhao\StateMachine\Graph;
 
 class DummyClass extends Graph
 {

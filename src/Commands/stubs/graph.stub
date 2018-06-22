@@ -12,5 +12,5 @@ class DummyClass extends Graph
 
     protected $states = [];
 
-    protected $transitions = [];
+    protected $graph = [];
 }

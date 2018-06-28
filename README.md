@@ -29,11 +29,11 @@
 
 ## 创建graph
 
-`php artisan make:graph`
+`php artisan make:graph TestGraph`
 
 运行该命令将会在`app\Graphs`目录下创建一个TestGraph文件.
 如果你不明白如何配置 graph,则可以运行
-`php artisan make:graph -demo` 来生成一个demo.
+`php artisan make:graph TestGraph -demo` 来生成一个demo.
 
 ```php
 <?php
@@ -51,7 +51,7 @@ class TestGraph extends Graph
      */
     protected $states = [
         'cart',
-		'new',
+        'new',
         'cancelled',
         'fulfilled'
     ];
@@ -81,11 +81,11 @@ class TestGraph extends Graph
         ]
     ];
 
-	/**
-	 * Model中用于进行状态转换的key 默认使用state字段
-	 * @var string
-	 */
-	protected $key = 'state';
+    /**
+     * Model中用于进行状态转换的key 默认使用state字段
+     * @var string
+     */
+    protected $key = 'state';
 
     /**
      * 转换发生时调用的回调(后置回调)
@@ -94,7 +94,7 @@ class TestGraph extends Graph
      */
     public function onCreate(Model $object)
     {
-		return 'created';
+        return 'created';
     }
 }
 
@@ -155,7 +155,9 @@ StateMachineException
 
 如`TestGraph::with($order)->apply('cancel')`则会调用TestGraph下的onCancel
 
-```
+```php
+<?php
+
 # TestGraph.php
 
 public function onCancel($order)

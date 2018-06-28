@@ -155,7 +155,9 @@ StateMachineException
 
 如`TestGraph::with($order)->apply('cancel')`则会调用TestGraph下的onCancel
 
-```
+```php
+<?php
+
 # TestGraph.php
 
 public function onCancel($order)

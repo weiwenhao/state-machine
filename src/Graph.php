@@ -52,10 +52,6 @@ abstract class Graph implements StateMachineConstruct
      */
     public function setObject(Model $object)
     {
-        if (!array_key_exists($this->key, $object->toArray())) {
-            throw new StateMachineException("Object does not have a {$this->key} attribute");
-        }
-
         $this->object = $object;
     }
 }

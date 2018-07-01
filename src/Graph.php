@@ -3,7 +3,6 @@
 namespace Weiwenhao\StateMachine;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Weiwenhao\StateMachine\Constructs\StateMachine as StateMachineConstruct;
 
 abstract class Graph implements StateMachineConstruct
@@ -14,7 +13,7 @@ abstract class Graph implements StateMachineConstruct
 
     protected $states = [];
 
-    protected $transitions = [];
+    protected $graph = [];
 
     protected $initState;
 

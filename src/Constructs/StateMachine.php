@@ -17,7 +17,7 @@ interface StateMachine
      *
      * @throws StateMachineException If transition doesn't exist
      */
-    public function can(string $transition);
+    public function can($transition);
 
     /**
      * Applies the transition on the underlying object
@@ -29,7 +29,7 @@ interface StateMachine
      *
      * @throws StateMachineException If transition can't be applied or doesn't exist
      */
-    public function apply(string $transition, bool $soft = false);
+    public function apply($transition, $soft = false);
 
     /**
      * Returns the current state

@@ -7,11 +7,11 @@
 如对于文章实体可能会有 new/draft/deleted
 对于支付实体可能会有 awaiting_payment/cancelled/paid/refunded
 对于订单实体↓
-![](http://omjq5ny0e.bkt.clouddn.com/15296547862738.jpg)
+![](http://asset.eienao.com/15296547862738.jpg)
 
 
 对于小程序的的迭代周期实体可能会有 ↓
-![](http://omjq5ny0e.bkt.clouddn.com/15296548277088.jpg)
+![](http://asset.eienao.com/15296548277088.jpg)
 
 
 
